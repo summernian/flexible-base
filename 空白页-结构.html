@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--http://zccst.iteye.com/blog/2188781 移动端专有meta-->
+<!--删除默认的苹果工具栏和菜单栏，需要显示工具栏和菜单栏时，不需要添加，默认值为no，即正常显示。-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!--控制状态栏显示样式  default（白色）black（黑色） black-translucent（灰色半透明）-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!--当该 HTML 页面在手机上浏览时，该标签用于指定是否将网页内容中的手机号码显示为拨号的超链接。-->
+<meta name="format-detection" content="telephone=no">
+<!--用于设定网页的到期时间。一旦网页过期，必须到服务器上重新传输。（禁止缓存）-->
+<meta http-equiv="Expires" content="0">
+<!--响应不会被缓存,而是实时向服务器端请求资源。-->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<!--禁止浏览器从本地计算机的缓存中访问页面内容-->
+<meta http-equiv="Pragma" content="no-cache">
+<!--强制全屏（UC浏览）-->
+<meta name="full-screen" content="yes">
+<!--应用模式（UC浏览器）-->
+<meta name="browsermode" content="application">
+<!--强制全屏（qq浏览器）-->
+<meta name="x5-fullscreen" content="true">
+<!--应用模式（qq浏览器）-->
+<meta name="x5-page-mode" content="app"> 
+<!--强制flexible不缩放-->
+<meta name="flexible" content="initial-dpr=1" />
+<script type="text/javascript" src="js/flexible.js"></script>
+<link rel="stylesheet" type="text/css" href="css/base.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<title>空白结构页</title>
+</head>
+<body>
+<!-- toTop -->
+<div class="to-top"></div>
+<!-- Toast -->
+<div class="toast" style="display: none">
+    <div class="toast-block">
+        <span>提示内容</span>
+    </div>
+</div>
+<!--Html start-->
+
+
+
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+	
+	showToast('这是一个移动端模板页面');
+	
+	function lowEnough(){
+        var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+        var viewportHeight = window.innerHeight || 
+            document.documentElement.clientHeight ||
+            document.body.clientHeight || 0;
+        var scrollHeight = window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop || 0;
+           	console.log(pageHeight);
+           	console.log(viewportHeight);
+           	console.log(scrollHeight);
+        return pageHeight - viewportHeight - scrollHeight;
+   	} //适用于滚动加载
+	function showToast(str,timer) {
+		var str = $.trim(str) || '出错咯！',
+			timer = timer || 1000; 
+	    $('.toast').fadeIn(100);
+	    $('.toast span').html(str);
+	    $('.toast .toast-block').animate({
+	        'opacity':1,
+	        'top': '25%'
+	    },200);
+	    setTimeout(function(){
+	        $('.toast .toast-block').animate({
+	            'opacity':0,
+	            'top': '20%'
+	        },function(){
+	            $('.toast').fadeOut(200);
+	        });
+	    },timer);
+	} //适用于消息提示框
+	function reload(){
+		window.location.reload();
+	} //适用于刷新页面
+	
+	// 适用于兼容iOS和Andriod输入框在底部导致的“弹出软键盘，页面被顶上去”后的画面还原
+	// ps：有无特殊必要，输入框不要在底部
+	$('input').on('blur',function(){
+		setTimeout(function(){
+			var scrollHeight = window.pageYOffset ||
+					           document.documentElement.scrollTop ||
+					           document.body.scrollTop || 0;
+			$('html,body').animate({scrollTop: scrollHeight},20);
+		},200);
+	});
+	
+	//点击返回顶部   jquery版本
+	//$(document.body).on('click',".to-top",function(){
+	//	$(window).scrollTop(0);
+		//jquery 动画版本 （当前版本亦不兼容）
+		//$('body,html').animate({scrollTop: 0}, 20);
+	//});
+	
+</script>
+<script type="text/javascript">
+//自定义返回顶部（动画版本，zepto不兼容,当前版本已优化）
+(function (global) {
+  	$.fn.scrollTo = function (options) {
+	    var defaults = {
+	      	toT: 0,    //滚动目标位置
+	      	durTime: 50,  //过渡动画时间
+	      	delay: 30,     //定时器时间
+	      	callback: null   //回调函数
+	    };
+	    var opts = $.extend(defaults, options),
+     	 	timer = null,
+	      	_this = this,
+	      	curTop = _this.scrollTop(),//滚动条当前的位置
+	      	subTop = opts.toT - curTop,//滚动条目标位置和当前位置的差值
+	      	index = 0,
+	      	dur = Math.round(opts.durTime / opts.delay),
+	      	smoothScroll = function (t) {
+	        	index++;
+	        	var per = Math.round(subTop / dur);
+	        	if (index >= dur) {
+		          	_this.scrollTop(t);
+		          	window.clearInterval(timer);
+		          	if (opts.callback && typeof opts.callback == 'function') {
+		            	opts.callback();
+		          	}
+		          	return;
+		        } else {
+		          	_this.scrollTop(curTop + index * per);
+		        }
+	      	};
+	    timer = window.setInterval(function () {
+	      	smoothScroll(opts.toT);
+	    }, opts.delay);
+	    
+    	return _this;
+	};
+	
+	//显示隐藏
+	var viewH = window.screen.height;//屏幕高度
+	
+	var tops = $(window).scrollTop();
+	if(tops > viewH) {
+		$(".to-top").show()
+	} else {
+		$(".to-top").hide()
+	}
+	$(window).scroll(function(){
+		var tops = $(window).scrollTop();
+		if(tops > viewH) {
+			$(".to-top").show()
+		} else {
+			$(".to-top").hide()
+		}
+	});
+	
+	$(".to-top").on('click',function(){
+		$("html,body").scrollTo({toT: 0,durTime: 200});
+	});
+}(window))
+</script>
+</body>
+</html>
