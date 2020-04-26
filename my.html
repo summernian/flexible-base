@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app"> 
+<meta name="flexible" content="initial-dpr=1" />
+<script type="text/javascript" src="js/flexible.js"></script>
+<link rel="stylesheet" type="text/css" href="css/base.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<title>我的订单 - 订单</title>
+</head>
+<body>
+<!-- toTop -->
+<div class="to-top"></div>
+<!-- Toast -->
+<div class="toast" style="display: none">
+    <div class="toast-block">
+        <span>提示内容</span>
+    </div>
+</div>
+<!--Html start-->
+<div class="main">
+	<div class="head">
+		<a href="javascript:history.go(-1);" id="head-return" class="black"></a>
+		<div class="title">我的订单</div>
+	</div>
+	<div class="my-content">
+		<div class="mycoupon">
+			<h3 class="clearFix">
+				<div class="payment-num">订单编号：<em>2020042000809</em></div>
+				<span class="paymenting">待付款</span>
+			</h3>
+			<p class="pay-coupon"><em>蚌埠e房团会员服务券</em></p>
+			<div class="coupon-btn-wrap clearFix">
+				<span class="coupon-label">服务费：<b>¥ 200.00元</b></span>
+				<button type="button" class="btn">立即付款</button>
+			</div>
+		</div>
+		<div class="mycoupon">
+			<h3 class="clearFix">
+				<div class="payment-num">订单编号：<em>2020042000809</em></div>
+				<span class="paymenting haspay">已付款</span>
+			</h3>
+			<p class="pay-coupon"><em>蚌埠e房团会员服务券</em></p>
+		</div>
+		<div class="mycoupon">
+			<h3 class="clearFix">
+				<div class="payment-num">订单编号：<em>2020042000809</em></div>
+				<span class="paymenting haspay">已付款</span>
+			</h3>
+			<p class="pay-coupon"><em>蚌埠e房团会员服务券</em></p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+	
+	function showToast(str,timer) {
+		var str = $.trim(str) || '出错咯！',
+			timer = timer || 1000; 
+	    $('.toast').fadeIn(100);
+	    $('.toast span').html(str);
+	    $('.toast .toast-block').animate({
+	        'opacity':1,
+	        'top': '25%'
+	    },200);
+	    setTimeout(function(){
+	        $('.toast .toast-block').animate({
+	            'opacity':0,
+	            'top': '20%'
+	        },function(){
+	            $('.toast').fadeOut(200);
+	        });
+	    },timer);
+	} //适用于消息提示框
+</script>
+</body>
+</html>

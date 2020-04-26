@@ -177,3 +177,19 @@ input {
 	margin: 0 auto;
 	width: 10rem;
 }
+/* 选中 */
+.select-opt {
+	display: inline-block;
+	width: 0.587rem;
+	height: 0.587rem;
+	border: 0.02rem solid #eb6120;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-size: 0.293rem 0.213rem;
+	background-position: center center;
+	border-radius: 50%;
+}
+.selected {
+	background-color: #eb6120;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAAAd0lEQVQ4je3SwQmAMBBE0bUDC7AGS/JiDYIlWIDlWIiHVCLC92AgEkLEON6c8+SxZLcyYYDGzBYz26Uo4DizfoE6P/mPhkIH9PJJgc0XJhnqiwMhWfzxnwLjHV68qBz+evspXHZSET5L7zTCNWgC16EXvAXqkrcHZ0JdGHyS/Q0AAAAASUVORK5CYII=");
+}

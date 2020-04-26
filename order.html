@@ -42,7 +42,11 @@
 			</div>
 			<div class="form-item clearFix">
 				<span class="label">身份证号</span>
-				<input type="text" class="placeholder-r" placeholder="请输入身份证号码">
+				<input type="text" class="placeholder-r" pattern="[0-9xX]*" placeholder="请输入身份证号码">
+			</div>
+			<div class="form-item-add clearFix">
+			    <span class="add-icon dv"></span>
+			    <span class="add-common-text">添加共有人</span>
 			</div>
 		</div>
 		<h3>付款方式</h3>
@@ -59,7 +63,7 @@
 		</div>
 		<div class="content-form m20">
 			<div class="form-item">
-				<a href="javascript:;" class="pay-type">首付比例</a>
+				<a href="javascript:;" class="pay-type">首付比例<i class="has">请选择</i></a>
 			</div>
 		</div>
 		<h3>商品信息</h3>
@@ -82,39 +86,6 @@
 		</div>
 	</div>
 </div>
-<select name="ratio" style="display: none;">
-	<option value ="">首付比例</option>
-	<option value="0.3">30%</option>
-	<option value="0.4">40%</option>
-	<option value="0.5">50%</option>
-	<option value="0.6">60%</option>
-	<option value="0.4">70%</option>
-	<option value="0.5">80%</option>
-	<option value="0.6">90%</option>
-</select>
-<!-- 弹窗 -->
-<div class="weui-mask"></div>
-<div class="modal" id="slideModal" style="">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">请选择购买服务券的价格</h4>
-			</div>
-			<div class="modal-body">
-				<a href="javascrpt:;" class="modal-item active">
-					<span class="modal-item-con unit-price clearFix">
-						<b>¥ 1000</b>
-						<i></i>
-					</span>
-				</a>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn">立即购买</button>
-			</div>
-		</div>
-	</div>
-</div>
-
 <script type="text/javascript" src="js/zepto.min.js"></script>
 <script type="text/javascript">
 	

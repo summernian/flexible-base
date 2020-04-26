@@ -2,6 +2,12 @@
 .m20 {
 	margin-top: 0.28rem;
 }
+.mb20 {
+	margin-bottom: 0.28rem;
+}
+.border-none {
+	border: none!important;
+}
 /* 头部 */
 .head {
 	position: relative;
@@ -273,7 +279,7 @@
 .button .btn {
 	width: 10rem;
 	height: 2rem;
-	line-height: 1.2rem;
+	line-height: 1.88rem;
 	font-weight: 600;
 	font-size: 20px;
 	color: #B92031;
@@ -509,6 +515,25 @@
 .content .content-form .form-item:last-of-type {
 	border-bottom: none;
 }
+.content .content-form .form-item-add {
+	height: 1.48rem;
+	line-height: 1.45rem;
+	font-size: 16px;
+	font-weight: 400;
+	color: #eb6120;
+	text-align: center;
+}
+.content .content-form .form-item-add .add-icon {
+	width: 0.56rem;
+	height: 0.56rem;
+	margin-right: 0.16rem;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAVFBMVEUAAADrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSDrYSCNbPVnAAAAG3RSTlMAQFD0YgfptqYyJIR0+d7Cwb6Uk2dVLxo5D3w3ElOXAAABHElEQVQ4y42V6wKCIAyFR9xCvJRmVuf937NWCZlJO//YPjc2YNJCVkXfakC3PipLW6oGhw+5ofqJTXustJ/W3EmD1XR9bUzddw1Y+vSF2Vc4P9pkGf0r6GKr1wPbjoEWCke2Hq4f8ZjThlYymskck/O6c3bnT86Os6c6mMutuAAht4zJd0UTdzjHox2gKMdk75QSG9oCyczJK66XtkHi2nljA4BQAgOAgcg6wFMJJA84SwrAWAZHsCUCjS2DtgEix+2oDFLHu2uB/h/YAy1poH6ex25WBG5pcWFfDWh6d9vgp7JTDKbUQc26PSxpEVJqaTHi9ogbLj5C8aWQXjPxxZU+BfHjkj5X6QAQjxTxkJKPPfkglY9m+bAX/z7u/2gxTD01TjkAAAAASUVORK5CYII=") no-repeat center;
+	background-size: cover;
+}
+.content .content-form .form-item-add .add-common-text {
+	display: inline-block;
+	vertical-align: top;
+}
 .form-item .label,
 .form-item input,
 .form-item .pay-mode,
@@ -539,8 +564,7 @@
 .form-item .pay-type {
 	position: relative;
 }
-.form-item .pay-type::after {
-	content: '请选择';
+.form-item .pay-type i {
 	top: 0;
 	right: 0;
 	position: absolute;
@@ -553,6 +577,10 @@
 	color: #999;
 	background: url('../img/more.png') no-repeat right center;
 	background-size: 0.36rem;
+}
+.form-item .pay-type i.has {
+	background: none;
+	color: #333;
 }
 .content-form .coupon-wrap {
 	padding: 0.52rem 0.2rem;
@@ -626,12 +654,12 @@
 	font-weight: 400;
 	font-size: 16px;
 	color: #666;
-	background: url(../img/select.png) no-repeat left center;
+	background: url('../img/select.png') no-repeat left center;
 	background-size: 0.52rem;
 	cursor: pointer;
 }
 .agree-wrap.active {
-	background: url(../img/select_ed.png) no-repeat left center;
+	background: url('../img/select_ed.png') no-repeat left center;
 	background-size: 0.52rem;
 } 
 .agree-wrap a {
@@ -650,6 +678,425 @@
 	font-weight: 600;
 	font-size: 20px;
 	color: #B92031;
-	background: url(../img/btn.png) no-repeat center;
+	background: url('../img/btn.png') no-repeat center;
 	background-size: 8.24rem 1.32rem;
+}
+
+/* 确认支付 */
+.price-content {
+	position: relative;
+	background: #fff;
+}
+.price-wrap {
+	padding: 0.8rem;
+}
+.price-wrap h2 {
+	font-size: 14px;
+	line-height: 0.8rem;
+	text-align: center;
+	color: #B92031;
+}
+.price-wrap h2 b {
+	font-size: 26px;
+}
+.price-wrap p {
+	font-size: 14px;
+	line-height: 0.48rem;
+	text-align: center;
+	color: #333;
+}
+.payType-wrap {
+	padding: 0 0.44rem 0.88rem;
+}
+.payType-wrap .payType-title,
+.payType-wrap .payType-body a {
+	font-size: 14px;
+	color: #999;
+	height: 1.08rem;
+	line-height: 1.08rem;
+	border-bottom: 0.015rem solid #dcdcdc;
+}
+.payType-wrap .payType-body a {
+	display: block;
+	position: relative;
+	padding: 0 0.8rem;
+	font-size: 16px;
+	color: #333;
+	height: 1.32rem;
+	line-height: 1.32rem;
+	overflow: hidden;
+}
+.payType-body a.active {
+	background: url('../img/right.png') no-repeat right center;
+	background-size: 0.28rem 0.24rem;
+}
+.payType-body a::after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0.8rem;
+	height: 1.32rem;
+}
+.payType-body a[data-type="zfb"]::after {
+	background: url('../img/ali.png') no-repeat left center;
+	background-size: 0.56rem;
+}
+.payType-body a[data-type="wx"]::after {
+	background: url('../img/wechat.png') no-repeat left center;
+	background-size: 0.56rem;
+}
+.payType-body a[data-type="pos"]::after {
+	background: url('../img/pos.png') no-repeat left center;
+	background-size: 0.56rem;
+}
+.payType-button,
+.success-button {
+	text-align: center;
+}
+.payType-button .btn,
+.success-button .btn {
+	width: 8.28rem;
+	height: 1.16rem;
+	line-height: 1.16rem;
+	font-weight: 400;
+	font-size: 16px;
+	color: #FFE7C9;
+	background:linear-gradient(
+		0deg,
+		rgba(197,39,59,1),
+		rgba(224,82,100,1)
+	);
+	border-radius: 0.16rem;
+}
+.success-wrap {
+	padding: 0.8rem 0;
+}
+.success-wrap img {
+	display: block;
+	width: 5.08rem;
+	height: 2.56rem;
+	margin: 0 auto;
+}
+.payment-head {
+	background:linear-gradient(
+		270deg,
+		rgba(197,39,59,1),
+		rgba(224,82,100,1)
+	);
+}
+.payment-head .title {
+	color: #fff;
+}
+.payment-time {
+	position: relative;
+	padding: 1.08rem 0.8rem 0.8rem;
+	background:linear-gradient(
+		270deg,
+		rgba(197,39,59,1),
+		rgba(224,82,100,1)
+	);
+}
+.payment-time h4,
+.payment-time p {
+	font-size: 16px;
+	font-weight: 400;
+	color: #fff;
+	line-height: 1.5;
+}
+.payment-time p {
+	font-size: 13px;
+}
+.payment-time img {
+	position: absolute;
+	right: 0.8rem;
+	bottom: 0.44rem;
+	width: 1.68rem;
+	height: 1.84rem;
+}
+.payment-info-wrap,
+.payment-info-item {
+	margin: 0 0.44rem;
+	width: 9.12rem;
+	border-bottom: 0.015rem solid #dcdcdc;
+}
+.payment-info-wrap h3,
+.payment-info-item h4,
+.payment-item-unit,
+.mycoupon h3{
+	height: 1.12rem;
+	line-height: 1.12rem;
+	font-size: 14px;
+	font-weight: 400;
+	color: #999;
+}
+.payment-info-item h4,
+.payment-item-unit {
+	height: 0.8rem;
+	line-height: 0.8rem;
+}
+.payment-info-wrap .payment-num,
+.payment-info-wrap .paymenting,
+.mycoupon .payment-num {
+	float: left;
+	height: 1.12rem;
+	line-height: 1.12rem;
+}
+.payment-info-wrap .paymenting {
+	float: right;
+	color: #B92031;
+}
+.pay-coupon {
+	position: relative;
+	margin: 0 auto 0.4rem;
+	width: 8.56rem;
+	height: 1.68rem;
+	background: url('../img/coupon.png') no-repeat center;
+	background-size: 8.56rem 1.68rem;
+}
+.pay-coupon em {
+	position: absolute;
+	right: 0.24rem;
+	top: 0.16rem;
+	width: 5.2rem;
+	height: 1.36rem;
+	font-size: 16px;
+	font-weight: 400;
+	color: #956854;
+	line-height: 1.36rem;
+}
+.payment-item-unit .unit-label,
+.payment-item-unit em,
+.payment-item-unit i,
+.payment-item-unit small {
+	float: left;
+	width: 2.16rem;
+	height: 0.8rem;
+	font-size: 14px;
+	font-weight: 400;
+	color: #333;
+}
+.payment-item-unit em {
+	width: 6rem;
+}
+.payment-item-unit i,
+.payment-item-unit small {
+	float: right;
+	width: auto;
+}
+.payment-item-unit em b,
+.payment-item-unit i b {
+	color: #B92031;
+	font-weight: 400;
+}
+.payment-item-unit small {
+	font-size: 12px;
+	color: #999;
+}
+.payment-item-unit small b {
+	font-weight: 400;
+	color: #999;
+}
+.payment-button {
+	padding: 0.48rem 0;
+}
+.payment-button .btn {
+	float: right;
+	padding: 0 0.48rem;
+	margin-left: 0.32rem;
+	height: 0.88rem;
+	line-height: 0.88rem;
+	font-weight: 400;
+	font-size: 14px;
+	color: #fff;
+	background: rgba(212,58,68,1);
+	border-radius: 0.44rem;
+}
+.payment-button .cancel {
+	background: #fff;
+	border: 0.02rem solid #dcdcdc;
+	color: #333;
+}
+.payment-button .cancel,
+.payment-button .payit {
+	margin-right: 0.44rem;
+}
+/* 我的订单 */
+.my-content {
+	min-height: 100vh;
+	padding: 0.4rem 0.44rem;
+	background: #f0f0f0;
+}
+.mycoupon {
+	margin-bottom: 0.4rem;
+	padding: 0 0.32rem 0.28rem;
+	border: 0.015rem solid #dcdcdc;
+	background: #fff;
+	-webkit-border-radius: 0.16rem;
+	-moz-border-radius: 0.16rem;
+	border-radius: 0.16rem;
+}
+.mycoupon .pay-coupon {
+	margin: 0 auto 0.18rem;
+	width: 8.4rem;
+	height: 1.68rem;
+	background: url('../img/coupon.png') no-repeat center;
+	background-size: 8.4rem 1.68rem;
+}
+.mycoupon .paymenting {
+    float: right;
+    color: #B92031;
+}
+.mycoupon .paymenting.haspay {
+	color: #09BB07;
+}
+.mycoupon .paymenting.invalid {
+    float: right;
+    color: #999;
+}
+.coupon-btn-wrap {
+	margin-top: 0.4rem;
+}
+.coupon-btn-wrap .coupon-label {
+	float: left;
+	height: 0.88rem;
+	line-height: 0.88rem;
+	font-size: 14px;
+	font-weight: 400;
+	color: #333;
+}
+.coupon-btn-wrap .coupon-label b {
+	color: #B92031;
+	font-weight: 400;
+}
+.coupon-btn-wrap .btn {
+	float: right;
+	width: 2.4rem;
+	height: 0.88rem;
+	background: rgba(212,58,68,1);
+	border-radius: 0.44rem;
+	font-size: 14px;
+	font-weight: 400;
+	color: #fff;
+}
+/* 我的服务券 */
+.coupon-info {
+	position: relative;
+	margin: 0.4rem 0 0 0.32rem;
+	padding: 0.2rem 0.4rem;
+	width: 9.16rem;
+	height: 2.56rem;
+	background: url('../img/using.png') no-repeat center;
+	background-size: 9.16rem 2.56rem;
+}
+.coupon-info.used {
+	background: url('../img/used.png') no-repeat center;
+	background-size: 9.16rem 2.56rem;
+}
+.coupon-info h4,
+.coupon-info p {
+	width: 6.8rem;
+	height: 0.84rem;
+	line-height: 0.84rem;
+	font-weight: 400;
+	font-size: 15px;
+	color: #B92031;
+	text-align: center;
+}
+.coupon-info p {
+	padding: 0.12rem 0;
+	height: 1.28rem;
+	line-height: 0.52rem;
+	font-weight: 400;
+	font-size: 12px;
+	color: #956854;
+}
+.coupon-info.used p {
+	color: #999;
+}
+.coupon-info p span {
+	display: block;
+}
+.coupon-info .coupon-type {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 2rem;
+	height: 2.48rem;
+}
+.coupon-info .coupon-type.noUse {
+	background: url('../img/noUse.png') no-repeat center;
+	background-size: 1.6rem;
+}
+.coupon-info .coupon-type.hadUse {
+	background: url('../img/hadUse.png') no-repeat center;
+	background-size: 1.6rem;
+}
+.coupon-info .coupon-type.timeOut {
+	background: url('../img/timeOut.png') no-repeat center;
+	background-size: 1.6rem;
+}
+/* 服务券详情 */
+.coupon-details {
+	margin: 0.4rem auto;
+	padding: 0.2rem;
+	width: 9.16rem;
+	background: rgba(212,58,68,1);
+	-webkit-border-radius: 0.16rem;
+	-moz-border-radius: 0.16rem;
+	border-radius: 0.16rem;
+}
+.details-wrap {
+	position: relative;
+	padding: 0.4rem;
+	text-align: center;
+	background: rgba(255,231,201,1);
+	-webkit-border-radius: 0.16rem;
+	-moz-border-radius: 0.16rem;
+	border-radius: 0.16rem;
+}
+.details-wrap::after,
+.details-wrap::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 0.24rem;
+	height: 0.24rem;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	background: #D43A44; 
+}
+.details-wrap::after {
+	left: -0.12rem;
+}
+.details-wrap::before {
+	right: -0.12rem;
+}
+.details-wrap h4 {
+	font-size: 17px;
+	line-height: 0.8rem;
+	font-weight: 600;
+	color: #333;
+}
+.coupon-code {
+	font-size: 14px;
+	line-height: 0.8rem;
+	font-weight: 400;
+	color: #333;
+}
+.coupon-code b {
+	font-weight: 600;
+	color: #B92031;
+}
+.coupon-time {
+	display: inline-block;
+	text-align: left;
+	line-height: 0.68rem;
+	font-size: 13px;
+	font-weight: 400;
+	color: #9C705C;
 }

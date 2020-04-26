@@ -83,6 +83,10 @@
 	function reload(){
 		window.location.reload();
 	} //适用于刷新页面
+	window.addEventListener('pageshow', function(event) {
+	    //event.persisted属性为true时，表示当前文档是从往返缓存中获取
+	    if(event.persisted) reload();  
+	});//强制刷新页面
 	
 	// 适用于兼容iOS和Andriod输入框在底部导致的“弹出软键盘，页面被顶上去”后的画面还原
 	// ps：有无特殊必要，输入框不要在底部
