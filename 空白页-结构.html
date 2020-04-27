@@ -46,28 +46,38 @@
 
 <script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	
-	showToast('这是一个移动端模板页面');
-	
-	function lowEnough(){
-        var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
-        var viewportHeight = window.innerHeight || 
-            document.documentElement.clientHeight ||
-            document.body.clientHeight || 0;
-        var scrollHeight = window.pageYOffset ||
-            document.documentElement.scrollTop ||
-            document.body.scrollTop || 0;
-           	console.log(pageHeight);
-           	console.log(viewportHeight);
-           	console.log(scrollHeight);
-        return pageHeight - viewportHeight - scrollHeight;
-   	} //适用于滚动加载
-	function showToast(str,timer) {
-		var str = $.trim(str) || '出错咯！',
-			timer = timer || 1000; 
+	showToast({
+		str: '这是一个toast模板<br />参数格式：object<br />设置停留时间：5秒',
+		timer: '5000',//停留时间，
+		cssText: {
+			//字体大小，颜色，对齐方式等样式设置
+			textAlign: 'left',
+			fontSize: '24px',
+			// fontWeight: 600,
+			// color: '#35AADC',
+			// background: '#ff4e49'
+		},
+		callBack: function() {
+			showToast('动画结束的回调：<br />只有1个字符串参数，默认停留2秒。');
+		}
+	});
+	function showToast(object) {
+		var obj = {
+			timer: 2000,
+			str: '出错咯！',
+		};
+		if(String(object) === object) {
+			obj.str = object;
+		} else if($.isPlainObject(object)) {
+			obj = $.extend(true,obj,object);
+		} else {
+			console.error('你特么传了个啥？');
+		}
+		var str = $.trim(obj.str) || '出错咯！',
+			timer = obj.timer || 5000; 
 	    $('.toast').fadeIn(100);
 	    $('.toast span').html(str);
-	    $('.toast .toast-block').animate({
+	    $('.toast .toast-block').css(obj.cssText).animate({
 	        'opacity':1,
 	        'top': '25%'
 	    },200);
@@ -76,13 +86,31 @@
 	            'opacity':0,
 	            'top': '20%'
 	        },function(){
-	            $('.toast').fadeOut(200);
+	            $('.toast').fadeOut(200,function(){
+					obj.callBack && obj.callBack();
+				});
 	        });
 	    },timer);
 	} //适用于消息提示框
+	
+	function lowEnough(){
+	    var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+	    var viewportHeight = window.innerHeight || 
+	        document.documentElement.clientHeight ||
+	        document.body.clientHeight || 0;
+	    var scrollHeight = window.pageYOffset ||
+	        document.documentElement.scrollTop ||
+	        document.body.scrollTop || 0;
+	       	console.log(pageHeight);
+	       	console.log(viewportHeight);
+	       	console.log(scrollHeight);
+	    return pageHeight - viewportHeight - scrollHeight;
+	} //适用于滚动加载
+	
 	function reload(){
 		window.location.reload();
 	} //适用于刷新页面
+	
 	window.addEventListener('pageshow', function(event) {
 	    //event.persisted属性为true时，表示当前文档是从往返缓存中获取
 	    if(event.persisted) reload();  

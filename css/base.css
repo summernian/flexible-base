@@ -145,21 +145,22 @@ input {
 }
 .toast-block {
 	max-width: 80%;
-	display: inline-block;
-	line-height: 1rem;
-	position: relative;
-	top: 20%;
 	margin: 0 auto;
+	position: relative;
+	display: inline-block;
 	padding: 0 0.32rem;
+	line-height: 1rem;
+	top: 20%;
 	text-align: center;
+	font-weight: 400;
+	font-size: .4rem;
+	color: #fff;
 	opacity: 0;
 	background: rgba(0,0,0,.8);
 	border-radius: .1rem;
 }
 .toast span {
 	display: inline-block;
-	font-size: .4rem;
-	color: #fff;
 }
 /* 返回顶部 */
 .to-top {
@@ -192,4 +193,129 @@ input {
 .selected {
 	background-color: #eb6120;
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAAAd0lEQVQ4je3SwQmAMBBE0bUDC7AGS/JiDYIlWIDlWIiHVCLC92AgEkLEON6c8+SxZLcyYYDGzBYz26Uo4DizfoE6P/mPhkIH9PJJgc0XJhnqiwMhWfzxnwLjHV68qBz+evspXHZSET5L7zTCNWgC16EXvAXqkrcHZ0JdGHyS/Q0AAAAASUVORK5CYII=");
+}
+
+/* 动画效果 */
+@-webkit-keyframes slideUp {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideUp {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+.weui-animate-slide-up {
+  -webkit-animation: slideUp ease .3s forwards;
+          animation: slideUp ease .3s forwards;
+}
+@-webkit-keyframes slideDown {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+  }
+}
+@keyframes slideDown {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+  }
+}
+.weui-animate-slide-down {
+  -webkit-animation: slideDown ease .3s forwards;
+          animation: slideDown ease .3s forwards;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.weui-animate-fade-in {
+  -webkit-animation: fadeIn ease .3s forwards;
+          animation: fadeIn ease .3s forwards;
+}
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.weui-animate-fade-out {
+  -webkit-animation: fadeOut ease .3s forwards;
+          animation: fadeOut ease .3s forwards;
+}
+/* 上移淡出 */
+@-webkit-keyframes slideFadeOut {
+	0%,
+	30% {
+		opacity:0;
+		-webkit-transform:translateY(0.16rem)
+	}
+	60% {
+		opacity:1;
+		-webkit-transform:translate(0)
+	}
+	to {
+		opacity:0;
+		-webkit-transform:translateY(-0.12rem)
+	}
+}
+@keyframes slideFadeOut {
+	0%,
+	30% {
+		opacity:0;
+		transform:translateY(0.16rem)
+	}
+	60% {
+		opacity:1;
+		transform:translate(0)
+	}
+	to {
+		opacity:0;
+		transform:translateY(-0.12rem)
+	}
+}
+.animate-slide-fade-out {
+	-webkit-animation: slideFadeOut 2s infinite ease-in-out;
+			animation: slideFadeOut 2s infinite ease-in-out;
 }
